@@ -39,12 +39,14 @@ export class LoginComponent {
               this.router.navigate(['home']);
             }
           })
+        }else {
+          Swal.fire(
+            'Error ',
+            'Usuario no existente ',
+            'warning'
+          )
         }
-        Swal.fire(
-          'Error ',
-          'Usuario no existente ',
-          'warning'
-        )
+       
       },
       error: (error)=>{
         console.log(error)
