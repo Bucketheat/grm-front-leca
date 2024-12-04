@@ -12,7 +12,7 @@ const APP_ROUTES: Routes = [
   {path:'home', component:HomeComponent},
   {path:'altaCitas',component:CitasAltaComponent}, 
   {path:'consultaCita',component:CitasConsultaComponent}, 
-  {path:'**',pathMatch:'full',redirectTo: 'home'}
+  {path:'**',pathMatch:'full',redirectTo: 'login'}
 ];
 
 @NgModule({

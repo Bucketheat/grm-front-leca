@@ -40,6 +40,11 @@ export class LoginComponent {
             }
           })
         }
+        Swal.fire(
+          'Error ',
+          'Usuario no existente ',
+          'warning'
+        )
       },
       error: (error)=>{
         console.log(error)
