@@ -1,0 +1,130 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <form  #myForm="ngForm" class="row g-3 needs-validation" novalidate>
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">No Cita</label>
+      <input
+        type="text"
+        [(ngModel)]="idCita"
+        name="idCita"
+        class="form-control"
+        id="validationCustom01"
+        value="Mark"
+        required
+      />
+
+      <div *ngIf="myForm.submitted && !myForm.controls['idCita']?.valid" class="invalid-feedback">
+        No debe de ir vacio.
+      </div>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Nombre Paciente</label>
+      <input
+        type="text"
+        [(ngModel)]="paciente"
+        name="paciente"
+        class="form-control"
+        id="validationCustom02"
+        value="Otto"
+        required
+      />
+
+      <div *ngIf="myForm.submitted && !myForm.controls['paciente']?.valid" class="invalid-feedback">
+        Nombre Paciente es requerido
+      </div>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <label for="validationCustom04" class="form-label">Tipo Consulta</label>
+      <select
+        class="form-select"
+        [(ngModel)]="tipoCita"
+        name="tipoCita"
+        id="validationCustom04"
+        required
+      >
+        <option>Consulta</option>
+        <option>Servicio</option>
+        <option>Tratamiento</option>
+      </select> 
+      <div *ngIf="myForm.submitted && !myForm.controls['tipoCita']?.valid" class="invalid-feedback">
+        Tipo Consulta es requerido.
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <label for="validationCustom04" class="form-label">Medico</label>
+      <select
+        class="form-select"
+        [(ngModel)]="medico"
+        name="medico"
+        id="validationCustom04"
+        required
+      > 
+        <option>Dr. Reyes</option>
+        <option>Dr. Perez</option>
+        <option>Dr. Lugo</option>
+      </select> 
+      <div *ngIf="myForm.submitted && !myForm.controls['medico']?.valid" class="invalid-feedback">
+        Medico es requerido.
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="w-100 d-flex">
+
+        <div class="input-group mr-2" style="margin-top: 32px;">
+          <input class="form-control" (blur)="inputBlur($event)" name="fecha"
+            [ngModel]="fecha | date:inputDatetimeFormat" [disabled]='false' required/>
+            
+    
+
+          <div class="input-group-append">
+            <button type="button" class="btn btn-outline-secondary mx-auto" placement="bottom" [autoClose]="false"
+              triggers="manual" #p="ngbPopover" (click)="p.open()" [ngbPopover]="popover"
+              popoverTitle="Select Date and Time">
+              Fecha de la cita
+            </button>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <ng-template #popover>
+        <ngb-datepicker #dp [(ngModel)]="model" name="model" (navigate)="date = $event.next"
+          (ngModelChange)="dateChange()" />
+        <div class="w-100 d-flex">
+          <div class="mx-auto">
+
+
+            <ngb-timepicker [(ngModel)]="time"  name="time" (ngModelChange)="dateChange()" />
+            <button class="btn btn-primary mx-auto" (click)="p.close()">Done</button>
+          </div>
+        </div>
+
+
+      </ng-template>
+    </div>
+    
+    <div class="col-12">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="myForm.invalid"
+        (click)="onSubmit(myForm)"
+      >
+        Registrar cita
+      </button>
+    </div>
+  </form>
+</div>
